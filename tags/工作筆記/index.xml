@@ -13,7 +13,7 @@
       <pubDate>Tue, 16 Mar 2021 22:34:47 +0800</pubDate>
       
       <guid>https://wenmurmur.github.io/blog/post-1/</guid>
-      <description>javax.net.sslSSLPeerUnverfiedException:pee not authenticated 原本網站配置為
+      <description>javax.net.sslSSLPeerUnverfiedException:peer not authenticated 原本網站配置為
 jdk6與TLS1.0改為jdk8與TLS1.2，tomcat則是未升級
 網路上查詢為jdk6用的SSLv2，jdk8用的TLSv1</description>
     </item>

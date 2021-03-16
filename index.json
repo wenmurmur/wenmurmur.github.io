@@ -1,1 +1,1 @@
-[{"categories":["Java"],"contents":"javax.net.sslSSLPeerUnverfiedException:pee not authenticated 原本網站配置為\njdk6與TLS1.0改為jdk8與TLS1.2，tomcat則是未升級\n網路上查詢為jdk6用的SSLv2，jdk8用的TLSv1\n","permalink":"https://wenmurmur.github.io/blog/post-1/","tags":["Java","工作筆記"],"title":"peer not authenticated"}]
+[{"categories":["Java"],"contents":"javax.net.sslSSLPeerUnverfiedException:peer not authenticated 原本網站配置為\njdk6與TLS1.0改為jdk8與TLS1.2，tomcat則是未升級\n網路上查詢為jdk6用的SSLv2，jdk8用的TLSv1\n","permalink":"https://wenmurmur.github.io/blog/post-1/","tags":["Java","工作筆記"],"title":"peer not authenticated"}]
