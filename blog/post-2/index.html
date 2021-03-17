@@ -5,7 +5,7 @@
 
   <!-- mobile responsive meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="工作筆記">
+  <meta name="description" content="iis設定Cookie HttpOnly">
   <meta name="author" content="Wen">
   <meta name="generator" content="Hugo 0.81.0" />
 
@@ -106,117 +106,82 @@
 </header>
 <!-- /navigation -->
 
-
 <section class="section-sm">
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 mb-5 mb-lg-0">
-        <div class="row">
-          
-          
-          <div class="col-md-6 mb-4">
-    <article class="card">
+      <div class="col-lg-8 mx-auto">
         
-        <div class="card-body px-0">
+        <a href="/categories/%e8%b3%87%e5%ae%89"
+          class="text-primary">資安</a>
         
-        <a href="https://wenmurmur.github.io/categories/%E8%B3%87%E5%AE%89/" class="h5 d-block my-3">資安</a>
+        <h2>VB classic回應封包設HttpOnly</h2>
         <div class="mb-3 post-meta">
-            <span>By Wen</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>01 January 0001</span>
-            
-        </div>
-        <p class="card-text"></p>
-        <a href="https://wenmurmur.github.io/categories/%E8%B3%87%E5%AE%89/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
+          <span>By Wen</span>
           
-          <div class="col-md-6 mb-4">
-    <article class="card">
-        
-        <div class="card-body px-0">
-        
-        <a href="https://wenmurmur.github.io/categories/java/" class="h5 d-block my-3">Java</a>
-        <div class="mb-3 post-meta">
-            <span>By Wen</span>
-            
-            <span class="border-bottom border-primary px-2 mx-1"></span>
-            <span>01 January 0001</span>
-            
-        </div>
-        <p class="card-text"></p>
-        <a href="https://wenmurmur.github.io/categories/java/" class="btn btn-outline-primary">read more</a>
-        </div>
-    </article>
-</div>
+          <span class="border-bottom border-primary px-2 mx-1"></span>
+          <span>17 March 2021</span>
           
         </div>
-      </div>
-      
-      <div class="col-lg-4">
-  
-  <div class="widget">
-    
-    <h4 class="widget-title">About Me</h4>
-    
-    <p>工作筆記
-工作日記</p>
-    <a href="https://wenmurmur.github.io/about/" class="btn btn-outline-primary">Know More</a>
-    
-  </div>
-  
-  <div class="widget">
-    <h4 class="widget-title">Category</h4>
-    <ul class="list-unstyled">
-      <li><a
-          href="/categories/java">Java</a>
-      </li>
-      <li><a
-          href="/categories/%e8%b3%87%e5%ae%89">資安</a>
-      </li>
-    </ul>
-  </div>
-  
-  <div class="widget">
-    <h4 class="widget-title">Tag</h4>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-          href="/tags/java">Java</a></li>
-      <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-          href="/tags/%e5%b7%a5%e4%bd%9c%e7%ad%86%e8%a8%98">工作筆記</a></li>
-      <li class="list-inline-item"><a class="d-block p-2 bg-primary text-white"
-          href="/tags/%e8%b3%87%e5%ae%89">資安</a></li>
-    </ul>
-  </div>
-  
-  <div class="widget">
-    <h4 class="widget-title">Social</h4>
-    <ul class="list-inline social-links">
-      
-      <li class="list-inline-item"><a href="https://github.com/wenmurmur"><i class="ti-github"></i></a></li>
-      
-    </ul>
-  </div>
-  
-  <div class="widget">
-    <img src="https://wenmurmur.github.io/images/promotion.png" alt="" class="img-fluid">
-  </div>
-</div>
-
-      
-
-      
-      <div class="col-12 mt-5">
         
+        <div class="content mb-5">
+          <h3 id="iis設定cookie-httponly">iis設定Cookie HttpOnly</h3>
+<p>在web.config已經增加下面，卻還是沒效</p>
+<pre><code class="language-config" data-lang="config">&lt;system.web&gt;
+     &lt;httpCookies httpOnlyCookies=&quot;true&quot;/&gt;
+&lt;/system.web&gt;
+</code></pre><p>查到VB classic可以在&lt;system.webServer&gt;增加rewrite module</p>
+<pre><code class="language-config" data-lang="config">&lt;system.webServer&gt;
+    &lt;rewrite&gt; ​
+        &lt;outboundRules&gt; ​
+            &lt;rule name=&quot;Add HttpOnly&quot; preCondition=&quot;No HttpOnly&quot;&gt; ​
+                &lt;match serverVariable=&quot;RESPONSE_Set_Cookie&quot; pattern=&quot;.*&quot; negate=&quot;false&quot; /&gt; ​
+                &lt;action type=&quot;Rewrite&quot; value=&quot;{R:0}; HttpOnly&quot; /&gt; ​
+                &lt;conditions&gt; ​
+                &lt;/conditions&gt; ​
+            &lt;/rule&gt; ​
+            &lt;preConditions&gt; ​
+                &lt;preCondition name=&quot;No HttpOnly&quot;&gt; ​
+                    &lt;add input=&quot;{RESPONSE_Set_Cookie}&quot; pattern=&quot;.&quot; /&gt; ​
+                    &lt;add input=&quot;{RESPONSE_Set_Cookie}&quot; pattern=&quot;; HttpOnly&quot; negate=&quot;true&quot; /&gt; ​
+                &lt;/preCondition&gt; ​
+            &lt;/preConditions&gt; ​
+        &lt;/outboundRules&gt; ​
+    &lt;/rewrite&gt;
+&lt;/system.webServer&gt;
+</code></pre><p>增加rewrite module前要先下載
+<a href="https://www.iis.net/downloads/microsoft/url-rewrite">https://www.iis.net/downloads/microsoft/url-rewrite</a></p>
+<p>可以使用Free Web Platform Installer或拉到下面Download URL Rewrite Module 2.1選擇版本</p>
+<p>此版本 Works With: IIS 7, IIS 7.5, IIS 8, IIS 8.5, IIS 10</p>
+<p>只要是正版OS都可以下載</p>
+<p>※rewrite module從IIS 7開始支援</p>
 
+        </div>
 
+        
+        <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "wenmurmur" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       </div>
     </div>
   </div>
 </section>
-
 
 
 

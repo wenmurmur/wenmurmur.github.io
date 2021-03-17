@@ -6,16 +6,26 @@
     <description>Recent content in Blogs on Wen黑白講</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-tw</language>
-    <lastBuildDate>Tue, 16 Mar 2021 22:34:47 +0800</lastBuildDate><atom:link href="https://wenmurmur.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 17 Mar 2021 21:22:00 +0800</lastBuildDate><atom:link href="https://wenmurmur.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VB classic回應封包設HttpOnly</title>
+      <link>https://wenmurmur.github.io/blog/post-2/</link>
+      <pubDate>Wed, 17 Mar 2021 21:22:00 +0800</pubDate>
+      
+      <guid>https://wenmurmur.github.io/blog/post-2/</guid>
+      <description>iis設定Cookie HttpOnly 在web.config已經增加下面，卻還是沒效
+&amp;lt;system.web&amp;gt;&amp;lt;httpCookies httpOnlyCookies=&amp;quot;true&amp;quot;/&amp;gt;&amp;lt;/system.web&amp;gt;查到VB classic可以在&amp;lt;system.webServer&amp;gt;增加rewrite module</description>
+    </item>
+    
     <item>
       <title>peer not authenticated</title>
       <link>https://wenmurmur.github.io/blog/post-1/</link>
       <pubDate>Tue, 16 Mar 2021 22:34:47 +0800</pubDate>
       
       <guid>https://wenmurmur.github.io/blog/post-1/</guid>
-      <description>javax.net.sslSSLPeerUnverfiedException:peer not authenticated 原本網站配置為
-jdk6與TLS1.0改為jdk8與TLS1.2，tomcat則是未升級
-網路上查詢為jdk6用的SSLv2，jdk8用的TLSv1</description>
+      <description>javax.net.sslSSLPeerUnverfiedException:peer not authenticated 原本網站配置為jdk6與TLS1.0
+改為jdk8與TLS1.2，tomcat則是未升級
+網路上查詢jdk6用SSLv2，jdk8用TLSv1</description>
     </item>
     
   </channel>
